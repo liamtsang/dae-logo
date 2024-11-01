@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      #logo-animation {
+      }
+      @keyframes blurWave {
+        0% {
+          filter: blur(0px);
+        }
+        25% {
+          filter: blur(5px);
+        }
+        50% {
+          filter: blur(0px);
+        }
+        75% {
+          filter: blur(5px);
+        }
+        100% {
+          filter: blur(0px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <img width="200px" id="logo-animation" src="Group 201.svg" />
+    <script>
+      const box = document.getElementById("logo-animation");
+
+      function startBlurAnimation() {
+        // Apply the animation
+        box.style.animation = "blurWave 8s ease-in-out";
+
+        // When animation ends, wait random time and start again
+        box.addEventListener(
+          "animationend",
+          function () {
+            box.style.animation = "none";
+
+            // Random delay between 1 and 3 seconds
+            const randomDelay = Math.random() * 4000 + 2000;
+
+            setTimeout(() => {
+              // Remove the event listener to prevent duplicates
+              box.removeEventListener("animationend", arguments.callee);
+              startBlurAnimation();
+            }, randomDelay);
+          },
+          { once: true },
+        );
+      }
+
+      // Start the initial animation
+      startBlurAnimation();
+    </script>
+  </body>
+</html>
