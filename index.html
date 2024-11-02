@@ -38,11 +38,10 @@
           function () {
             box.style.animation = "none";
 
-            // Random delay between 1 and 3 seconds
+            // Random delay between 4 and 6 seconds (offset of 2)
             const randomDelay = Math.random() * 4000 + 2000;
 
             setTimeout(() => {
-              // Remove the event listener to prevent duplicates
               box.removeEventListener("animationend", arguments.callee);
               startBlurAnimation();
             }, randomDelay);
@@ -51,7 +50,6 @@
         );
       }
 
-      // Start the initial animation
       startBlurAnimation();
     </script>
   </body>
